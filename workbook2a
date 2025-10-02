@@ -1,0 +1,209 @@
+Workbook2a 
+Calculator 2: A calculator that determines the future value of a 
+one-time deposit assuming compound interest - it is used to help 
+you decide how much a CD will be worth when it matures  
+a. It would accept the deposit, interest rate, and number of 
+years from the user  
+b. It would display the future value and the total interest 
+earned  
+Example: If you deposit $1,000 in a CD that earns 1.75% 
+interest and matures in 5 years, your CD's ending balance will 
+be $ 1,091.44 and you would have earned $91.44 in interest  
+Note: The numbers above assume daily compounding  
+FV = P × (1 + (r / 365) )^(365 × t) 
+• Future Value (FV) = 
+o Principal (P):  - This is the initial deposit amount. 
+o Annual Interest Rate (r):  - The nominal annual interest rate in decimal form. 
+(e.g., 1.75% = 0.0175). 
+o Number of Years (t):  - The total number of years the deposit will earn interest. 
+o Days Per Year:  - Daily compounding assumes 365 days per year. 
+o Total Number of Days:  - This is 365 × t (because there are 365 days per year). 
+• Total Interest Earned = FV - P
+
+Step 1: Import Scanner
+import java.util.Scanner;
+
+
+Java doesn’t automatically know how to read user input (like deposit, rate, years).
+
+Scanner is like a magic messenger  who takes input from the keyboard and hands it to our program.
+
+ Step 2: Create the Main Class
+public class CompoundCalculator {
+    public static void main(String[] args) {
+
+
+Every Java program starts with main().
+
+Think of main() as the entry gate to your adventure—the game begins here. 
+
+ Step 3: Ask the User for Input
+Scanner input = new Scanner(System.in);
+
+System.out.print("Enter deposit amount: ");
+double P = input.nextDouble();
+
+System.out.print("Enter annual interest rate (in %): ");
+double ratePercent = input.nextDouble();
+double r = ratePercent / 100.0;
+
+System.out.print("Enter number of years: ");
+int t = input.nextInt();
+
+
+We create a Scanner object (input).
+
+We ask the user for numbers (deposit, rate, years).
+
+nextDouble() and nextInt() grab values and store them in variables.
+
+Notice we convert the interest rate: r = ratePercent / 100.0; → 1.75 becomes 0.0175.
+
+These are our variables = hero stats (P, r, t).
+
+ Step 4: Do the Math
+int days = 365 * t;
+double FV = P * Math.pow(1 + (r / 365), days);
+
+
+First, we calculate total days = 365 × years.
+
+Then use the formula:
+
+𝐹
+𝑉
+=
+𝑃
+×
+(
+1
++
+𝑟
+365
+)
+𝑑
+𝑎
+𝑦
+𝑠
+FV=P×(1+
+365
+r
+	​
+
+)
+days
+
+Math.pow(base, exponent) = raises something to a power (like 
+(
+1.0000479
+)
+1825
+(1.0000479)
+1825
+).
+
+This is the heart of the calculator spell .
+
+ Step 5: Find the Interest
+double interest = FV - P;
+
+
+Subtract the original deposit (P) from the future value (FV).
+
+This gives total interest earned.
+
+Like calculating how much extra treasure  you’ve gained.
+
+ Step 6: Show the Results
+System.out.printf("Future Value: $%.2f%n", FV);
+System.out.printf("Total Interest Earned: $%.2f%n", interest);
+
+
+System.out.printf lets us format numbers nicely with 2 decimals.
+
+%n means “new line.”
+
+Example output:
+
+Future Value: $1091.44
+Total Interest Earned: $91.44
+
+🪄 Step 7: Close the Scanner
+input.close();
+
+Workbook2a #3
+Calculator 3: A calculator that determines the present value of an 
+ordinary annuity. (Note: this is difficult)  
+a. It would accept the monthly payout, expected interest rate, 
+and years to pay out from the user  
+b. It would display the present value of that annuity  
+Example: To fund an annuity that pays $3,000 monthly for 20 
+years and earns an expected 2.5% interest, you would need to 
+invest $566,141.46 today.  
+Step 1: Set Up Scanner
+
+In Java, we use Scanner to read input from the keyboard:
+
+import java.util.Scanner;
+
+
+Inside main():
+
+Scanner scanner = new Scanner(System.in);
+
+
+Think of scanner like a magical scribe  who listens to what you type and hands it to your program.
+
+ Step 2: Ask the User for Input
+
+We want three values:
+
+Monthly payout (PMT)
+
+Annual interest rate (%)
+
+Number of years
+
+System.out.print("Enter monthly payout: ");
+double PMT = scanner.nextDouble();
+
+System.out.print("Enter annual interest rate (in %): ");
+double annualRatePercent = scanner.nextDouble();
+
+System.out.print("Enter number of years: ");
+int years = scanner.nextInt();
+
+ Step 3: Convert Inputs into Useful Numbers
+
+Convert interest from % to decimal
+
+Find monthly interest rate (i)
+
+Find total number of months (n)
+
+double annualRate = annualRatePercent / 100.0; // e.g., 2.5 -> 0.025
+double i = annualRate / 12;                    // monthly interest
+int n = years * 12;                            // total months
+
+Step 4: Do the Math
+
+Apply the formula in Java:
+
+double PV = PMT * (1 - Math.pow(1 + i, -n)) / i;
+
+ Step 5: Display Output
+System.out.printf("Present Value of the annuity: $%.2f%n", PV);
+scanner.close();
+
+ Example Run (How YOU Input Values)
+
+When you run the program, Java will pause and wait for your answers at each prompt.
+
+Enter monthly payout: 3000
+Enter annual interest rate (in %): 2.5
+Enter number of years: 20
+
+
+After you press Enter for each, Java computes everything and shows:
+
+Present Value of the annuity: $566141.46
