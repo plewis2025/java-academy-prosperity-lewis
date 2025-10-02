@@ -1,0 +1,82 @@
+// Java Loop Examples
+// Author: Remsey Mailjard
+
+// Demonstrates: for loop, while loop, do...while loop
+
+public class LoopExamples {
+    public static void main(String[] args) {
+        
+        // 1. FOR LOOP
+        // Use when you know how many times you want to repeat
+        System.out.println("For Loop: Counting from 1 to 5");
+        for (int i = 1; i <= 5; i++) {
+            System.out.println("Iteration " + i);
+        }
+
+        // 2. WHILE LOOP
+        // Use when you don't know how many times in advance
+        System.out.println("\nWhile Loop: Counting down from 5");
+        int j = 5;
+        while (j > 0) {
+            System.out.println("Countdown: " + j);
+            j--;
+        }
+
+        // 3. DO...WHILE LOOP
+        // Always runs at least once, even if condition is false
+        System.out.println("\nDo...While Loop: Run at least once");
+        int k = 0;
+        do {
+            System.out.println("This will print once, even though k = " + k);
+            k--;
+        } while (k > 0);
+    }
+
+This gist demonstrates three types of loops in Java:
+
+for loop → best when you know the number of iterations
+while loop → best when the condition controls the loop
+do...while loop → guarantees at least one execution
+✏️ Exercises
+Modify the for loop to print only even numbers.
+Change the while loop into a countdown timer. (Use Thread.sleep(1000) to pauze the countdown for a second)
+Add a do...while loop that asks the user for input until they type "exit".
+@plewis2025
+plewis2025 commented 2 days ago
+public class LoopExamples {
+public static void main(String[] args) throws InterruptedException {
+
+    // 1. FOR LOOP
+    // Modified: Print even numbers from 1 to 10
+    System.out.println("For Loop: Even numbers from 1 to 10");
+    for (int i = 1; i <= 10; i++) {
+        if (i % 2 == 0) {
+            System.out.println("Even: " + i);
+        }
+    }
+
+    // 2. WHILE LOOP
+    // Modified: Countdown timer with 1-second delay
+    System.out.println("\nWhile Loop: Countdown timer from 5");
+    int j = 5;
+    while (j > 0) {
+        System.out.println("Countdown: " + j);
+        Thread.sleep(1000); // Pause for 1 second
+        j--;
+    }
+    System.out.println("Time's up!");
+
+    // 3. DO...WHILE LOOP
+    // Modified: Keep asking for input until user types "exit"
+    Scanner scanner = new Scanner(System.in);
+    String input;
+    System.out.println("\nDo...While Loop: Type 'exit' to quit");
+    do {
+        System.out.print("Enter something: ");
+        input = scanner.nextLine();
+    } while (!input.equalsIgnoreCase("exit"));
+
+    System.out.println("Exited the loop. Goodbye!");
+    scanner.close();
+}
+}
